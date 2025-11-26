@@ -3,6 +3,12 @@ import ExpenseList from "./Components/ExpenseList";
 import ExpenseFilter from "./Components/ExpenseFilter";
 import ExpenseForm from "./Components/ExpenseForm";
 
+interface Expense {
+  id: number;
+  description: string;
+  amount: number;
+  category: string;
+}
 
 const styles = {
   container : "m-3 w-fit border p-3 rounded-lg",
@@ -11,13 +17,7 @@ const styles = {
 
 const App = () => {
   const [selectedCategory,setSelectedCategory] = useState("");
-  const [expense_list, setExpenseList] = useState([
-    { id: 1, description: "Apple", amount: 10, category: "Grocery" },
-    { id: 2, description: "Electricity bill", amount: 10, category: "Utility" },
-    { id: 3, description: "Book", amount: 10, category: "Entertainment" },
-    { id: 4, description: "Charger", amount: 10, category: "Utility" },
-    { id: 5, description: "Battery", amount: 10, category: "Utility" },
-  ]);
+  const [expense_list, setExpenseList] = useState<Expense[]>([]);
 
   const visibleExpenses = selectedCategory ? expense_list.filter(e => e.category === selectedCategory) : expense_list;
 
